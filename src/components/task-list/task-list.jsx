@@ -55,26 +55,6 @@ export default class TaskList extends Component {
       );
     };
 
-    // const renderTask = (text, id, completed, time) => {
-    //   const task = (
-    //     <Task
-    //       time={time}
-    //       taskText={text}
-    //       id={id}
-    //       onRemoveTask={onRemoveTask}
-    //       onCompletedTask={onCompletedTask}
-    //       onEditingTask={onEditingTask}
-    //     />
-    //   );
-    //   if (onStateTaskFilter === 'active') {
-    //     if (!completed) return task;
-    //   } else if (onStateTaskFilter === 'completed') {
-    //     if (completed) return task;
-    //   } else {
-    //     return task;
-    //   }
-    // };
-
     const renderTask = (text, id, completed, editing, time) => {
       if (onStateTaskFilter === 'active' && completed) {
         return null;
@@ -87,6 +67,7 @@ export default class TaskList extends Component {
       return (
         <li className={completed ? 'completed' : editing ? 'editing' : null} key={id}>
           <Task
+            checked={completed ? true : false}
             time={time}
             taskText={text}
             id={id}
