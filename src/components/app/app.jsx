@@ -3,6 +3,7 @@ import TaskList from '../task-list';
 import Footer from '../footer';
 import NewTaskForm from '../new-task-form';
 import { formatDistanceToNow } from 'date-fns';
+import PropTypes from 'prop-types';
 import './app.css';
 
 export default class App extends Component {
@@ -11,23 +12,33 @@ export default class App extends Component {
     stateTaskFilter: 'all',
   };
 
+  static defaultProps = {
+    setInterval: 10000,
+  };
+
+  static propTypes = {
+    setInterval: PropTypes.func,
+  };
+
   timeInterval = setInterval(() => {
-    const newTasks = this.state.tasks.map((task) => ({
-      ...task,
-      time: {
-        timeCreate: task.time.timeCreate,
-        timeDistanceToNow: formatDistanceToNow(task.time.timeCreate, {
-          includeSeconds: true,
-        }),
-      },
-    }));
-    return this.setState({
-      tasks: newTasks,
+    this.setState((state) => {
+      const newTasks = state.tasks.map((task) => ({
+        ...task,
+        time: {
+          timeCreate: task.time.timeCreate,
+          timeDistanceToNow: formatDistanceToNow(task.time.timeCreate, {
+            includeSeconds: true,
+          }),
+        },
+      }));
+      return {
+        tasks: newTasks,
+      };
     });
-  }, 10000);
+  }, this.props.setInterval);
 
   toggleStateTaskFilter = (state) => {
-    this.setState({
+    return this.setState({
       stateTaskFilter: state,
     });
   };
@@ -40,27 +51,33 @@ export default class App extends Component {
       editing: false,
       time: { timeCreate: new Date(), timeDistanceToNow: formatDistanceToNow(new Date(), { includeSeconds: true }) },
     };
-    return this.setState({
-      tasks: [...this.state.tasks, newTasks],
+
+    this.setState((state) => {
+      return {
+        tasks: [...state.tasks, newTasks],
+      };
     });
   };
 
   handleRemoveTask = (idTask) => {
-    const newTasks = this.state.tasks.filter((value) => value.id !== idTask);
-    return this.setState({
-      tasks: newTasks,
+    this.setState((state) => {
+      return {
+        tasks: state.tasks.filter((value) => value.id !== idTask),
+      };
     });
   };
 
   handleEditingTask = (idTask) => {
-    const newTasks = this.state.tasks.map((value) => {
-      if (value.id === idTask && !value.completed) {
-        value.editing = !value.editing;
-      }
-      return value;
-    });
-    return this.setState({
-      tasks: newTasks,
+    this.setState((state) => {
+      const newTasks = state.tasks.map((value) => {
+        if (value.id === idTask && !value.completed) {
+          value.editing = !value.editing;
+        }
+        return value;
+      });
+      return {
+        tasks: newTasks,
+      };
     });
   };
 
@@ -71,15 +88,16 @@ export default class App extends Component {
   };
 
   handleCompletedTask = (idTask) => {
-    const newTasks = this.state.tasks.map((value) => {
-      if (value.id === idTask) {
-        value.completed = !value.completed;
-      }
-      return value;
-    });
-
-    return this.setState({
-      tasks: newTasks,
+    this.setState((state) => {
+      const newTasks = state.tasks.map((value) => {
+        if (value.id === idTask) {
+          value.completed = !value.completed;
+        }
+        return value;
+      });
+      return {
+        tasks: newTasks,
+      };
     });
   };
 
@@ -92,10 +110,10 @@ export default class App extends Component {
   };
 
   clearCompletedTask = () => {
-    const newTasks = this.state.tasks.filter((value) => !value.completed);
-
-    this.setState({
-      tasks: newTasks,
+    this.setState((state) => {
+      return {
+        tasks: state.tasks.filter((value) => !value.completed),
+      };
     });
   };
 

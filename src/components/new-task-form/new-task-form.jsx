@@ -1,9 +1,18 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import './new-task-form.css';
 
 export default class NewTaskForm extends Component {
   state = {
     inputValue: '',
+  };
+
+  static defaultProps = {
+    onAddTask: () => {},
+  };
+
+  static propTypes = {
+    onAddTask: PropTypes.func,
   };
 
   handleChange = ({ target }) => {

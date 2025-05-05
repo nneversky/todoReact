@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './task.css';
 
 const Task = ({ time, taskText, id, onRemoveTask, onCompletedTask, onEditingTask, checked }) => {
@@ -12,6 +13,22 @@ const Task = ({ time, taskText, id, onRemoveTask, onCompletedTask, onEditingTask
       <button className="icon icon-destroy" onClick={() => onRemoveTask(id)}></button>
     </div>
   );
+};
+
+Task.defaultProps = {
+  onRemoveTask: () => {},
+  onCompletedTask: () => {},
+  onEditingTask: () => {},
+};
+
+Task.propTypes = {
+  time: PropTypes.string.isRequired,
+  taskText: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onRemoveTask: PropTypes.func,
+  onCompletedTask: PropTypes.func,
+  onEditingTask: PropTypes.func,
+  checked: PropTypes.bool,
 };
 
 export default Task;

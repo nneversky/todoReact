@@ -1,10 +1,28 @@
 import { Component } from 'react';
 import Task from '../task';
+import PropTypes from 'prop-types';
 import './task-list.css';
 
 export default class TaskList extends Component {
   state = {
     textTask: '',
+  };
+
+  static defaultProps = {
+    onStateTaskFilter: () => {},
+    onRemoveTask: () => {},
+    onCompletedTask: () => {},
+    onEditingTask: () => {},
+    onHandleEditingTaskInput: () => {},
+  };
+
+  static propTypes = {
+    onStateTaskFilter: PropTypes.func,
+    onRemoveTask: PropTypes.func,
+    onCompletedTask: PropTypes.func,
+    onEditingTask: PropTypes.func,
+    onHandleEditingTaskInput: PropTypes.func,
+    onTaskList: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   handleChange = ({ target }) => {
