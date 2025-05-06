@@ -26,4 +26,4 @@ Footer.propTypes = {
   onClearCompletedTask: PropTypes.func,
 };
 
-export default Footer;
+export default Footers;
