@@ -9,7 +9,8 @@ Key Features:
 ✅ Clear completed tasks
 ✅ Responsive & clean UI
 
-![image](https://github.com/user-attachments/assets/da2482f7-bec8-490e-b7bf-6c584e8a8d37)
+![image](https://github.com/user-attachments/assets/5993beaa-8120-4054-b435-c935e3a79a07)
+
 
 
 Tech Stack:
