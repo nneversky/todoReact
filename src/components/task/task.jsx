@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import './task.css';
+import PropTypes from 'prop-types'
+import './task.css'
 
 const Task = ({ time, taskText, id, onRemoveTask, onCompletedTask, onEditingTask, checked }) => {
   return (
@@ -12,14 +12,14 @@ const Task = ({ time, taskText, id, onRemoveTask, onCompletedTask, onEditingTask
       <button className="icon icon-edit" onClick={() => onEditingTask(id)}></button>
       <button className="icon icon-destroy" onClick={() => onRemoveTask(id)}></button>
     </div>
-  );
-};
+  )
+}
 
 Task.defaultProps = {
   onRemoveTask: () => {},
   onCompletedTask: () => {},
   onEditingTask: () => {},
-};
+}
 
 Task.propTypes = {
   time: PropTypes.string.isRequired,
@@ -29,6 +29,6 @@ Task.propTypes = {
   onCompletedTask: PropTypes.func,
   onEditingTask: PropTypes.func,
   checked: PropTypes.bool,
-};
+}
 
-export default Task;
+export default Task

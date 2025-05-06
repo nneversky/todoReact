@@ -1,12 +1,13 @@
-import { Component } from 'react';
-import Task from '../task';
-import PropTypes from 'prop-types';
-import './task-list.css';
+import { Component } from 'react'
+import PropTypes from 'prop-types'
+
+import Task from '../task'
+import './task-list.css'
 
 export default class TaskList extends Component {
   state = {
     textTask: '',
-  };
+  }
 
   static defaultProps = {
     onStateTaskFilter: () => {},
@@ -14,7 +15,7 @@ export default class TaskList extends Component {
     onCompletedTask: () => {},
     onEditingTask: () => {},
     onHandleEditingTaskInput: () => {},
-  };
+  }
 
   static propTypes = {
     onStateTaskFilter: PropTypes.func,
@@ -23,13 +24,13 @@ export default class TaskList extends Component {
     onEditingTask: PropTypes.func,
     onHandleEditingTaskInput: PropTypes.func,
     onTaskList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  };
+  }
 
   handleChange = ({ target }) => {
     return this.setState({
       textTask: target.value,
-    });
-  };
+    })
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.onTaskList !== this.props.onTaskList) {
@@ -37,31 +38,31 @@ export default class TaskList extends Component {
         if (value.editing) {
           this.setState({
             textTask: value.text,
-          });
+          })
         }
-      });
+      })
     }
   }
 
   render() {
     const { onStateTaskFilter, onTaskList, onRemoveTask, onCompletedTask, onEditingTask, onHandleEditingTaskInput } =
-      this.props;
+      this.props
 
     const handleKeyDown = ({ keyCode }) => {
       if (keyCode === 13) {
         const newTasks = onTaskList.map((value) => {
           if (value.editing) {
-            value.text = this.state.textTask.trim();
-            value.editing = false;
+            value.text = this.state.textTask.trim()
+            value.editing = false
           }
-          return value;
-        });
-        onHandleEditingTaskInput(newTasks);
+          return value
+        })
+        onHandleEditingTaskInput(newTasks)
       }
-    };
+    }
 
     const showInput = (editing) => {
-      if (!editing) return null;
+      if (!editing) return null
       return (
         <input
           type="text"
@@ -70,16 +71,16 @@ export default class TaskList extends Component {
           value={this.state.textTask}
           onChange={(e) => this.handleChange(e)}
         />
-      );
-    };
+      )
+    }
 
     const renderTask = (text, id, completed, editing, time) => {
       if (onStateTaskFilter === 'active' && completed) {
-        return null;
+        return null
       }
 
       if (onStateTaskFilter === 'completed' && !completed) {
-        return null;
+        return null
       }
 
       return (
@@ -95,16 +96,16 @@ export default class TaskList extends Component {
           />
           {showInput(editing)}
         </li>
-      );
-    };
+      )
+    }
 
     return (
       <ul className="todo-list">
         {onTaskList.map((value) => {
-          const { text, id, completed, editing, time } = value;
-          return renderTask(text, id, completed, editing, time);
+          const { text, id, completed, editing, time } = value
+          return renderTask(text, id, completed, editing, time)
         })}
       </ul>
-    );
+    )
   }
 }

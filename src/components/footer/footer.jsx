@@ -1,7 +1,7 @@
-import TaskFilter from '../task-filter';
-import './footer.css';
+import PropTypes from 'prop-types'
 
-import PropTypes from 'prop-types';
+import TaskFilter from '../task-filter'
+import './footer.css'
 
 const Footer = ({ onToggleStateTaskFilter, onShowCountItems, onClearCompletedTask }) => {
   return (
@@ -12,19 +12,19 @@ const Footer = ({ onToggleStateTaskFilter, onShowCountItems, onClearCompletedTas
         Clear completed
       </button>
     </footer>
-  );
-};
+  )
+}
 
 Footer.defaultProps = {
   onToggleStateTaskFilter: () => {},
   onShowCountItems: () => {},
   onClearCompletedTask: () => {},
-};
+}
 
 Footer.propTypes = {
   onToggleStateTaskFilter: PropTypes.func,
   onShowCountItems: PropTypes.func,
   onClearCompletedTask: PropTypes.func,
-};
+}
 
-export default Footer;
+export default Footer

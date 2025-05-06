@@ -1,36 +1,36 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import './task-filter.css';
+import { Component } from 'react'
+import PropTypes from 'prop-types'
+import './task-filter.css'
 
 export default class TaskFilter extends Component {
   state = {
     classButtonFilter: 'filters__button--all',
-  };
+  }
 
   static defaultProps = {
     onToggleStateTaskFilter: () => {},
-  };
+  }
 
   static propTypes = {
     onToggleStateTaskFilter: PropTypes.func,
-  };
+  }
 
   toggleClassFilter = (className) => {
-    this.props.onToggleStateTaskFilter(className);
+    this.props.onToggleStateTaskFilter(className)
     this.setState({
       classButtonFilter: `filters__button--${className}`,
-    });
-  };
+    })
+  }
 
   render() {
-    const { classButtonFilter } = this.state;
+    const { classButtonFilter } = this.state
 
     const toggleClassName = (className) => {
       if (`filters__button--${className}` === classButtonFilter) {
-        return (className = `filters__button--${className} selected`);
+        return (className = `filters__button--${className} selected`)
       }
-      return `filters__button--${className}`;
-    };
+      return `filters__button--${className}`
+    }
 
     return (
       <ul className="filters">
@@ -50,6 +50,6 @@ export default class TaskFilter extends Component {
           </button>
         </li>
       </ul>
-    );
+    )
   }
 }
