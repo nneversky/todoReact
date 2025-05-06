@@ -1,6 +1,7 @@
 import TaskFilter from '../task-filter';
-import PropTypes from 'prop-types';
 import './footer.css';
+
+import PropTypes from 'prop-types';
 
 const Footer = ({ onToggleStateTaskFilter, onShowCountItems, onClearCompletedTask }) => {
   return (
@@ -26,4 +27,4 @@ Footer.propTypes = {
   onClearCompletedTask: PropTypes.func,
 };
 
-export default Footers;
+export default Footer;
