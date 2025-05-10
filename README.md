@@ -1,6 +1,6 @@
 A simple yet functional Todo application built with React and date-fns for time formatting.
 
-Link on Versel https://todo-react-18lew3nqs-nneverskys-projects.vercel.app/
+Link on Versel https://todo-react-18lew3nqs-nneverskys-projects.vercel.app/?_vercel_share=q503CBPyii3d3QvJNiRQrOdPzTunXdro
 
 Key Features:
 ✅ Add, delete, and mark tasks as complete
